@@ -21,23 +21,23 @@ def generate_data(num_samples, add_noise=False, add_anomalies=False):
     return pd.DataFrame({'x': x, 'y': y})
 
 # Генерация тренировочных данных
-train_data_1 = generate_data(100)  # Обычные данные
-train_data_2 = generate_data(100, add_noise=True)  # Данные с шумом
-train_data_3 = generate_data(100, add_anomalies=True)  # Данные с аномалиями
+regular_data = generate_data(100)  # Обычные данные
+noised_data = generate_data(100, add_noise=True)  # Данные с шумом
+data_with_anomalies = generate_data(100, add_anomalies=True)  # Данные с аномалиями
 
 # Сохранение тренировочных данных в папку "train"
-train_data_1.to_csv('train/train_data_1.csv', index=False)
-train_data_2.to_csv('train/train_data_2.csv', index=False)
-train_data_3.to_csv('train/train_data_3.csv', index=False)
+regular_data.to_csv('train/train_data_1.csv', index=False)
+noised_data.to_csv('train/train_data_2.csv', index=False)
+data_with_anomalies.to_csv('train/train_data_3.csv', index=False)
 
 # Генерация тестовых данных
-test_data_1 = generate_data(20)  # Обычные данные
-test_data_2 = generate_data(20, add_noise=True)  # Данные с шумом
-test_data_3 = generate_data(20, add_anomalies=True)  # Данные с аномалиями
+test_regular_data = generate_data(20)  # Обычные данные
+test_noised_data = generate_data(20, add_noise=True)  # Данные с шумом
+test_data_with_anomalies = generate_data(20, add_anomalies=True)  # Данные с аномалиями
 
 # Сохранение тестовых данных в папку "test"
-test_data_1.to_csv('test/test_data_1.csv', index=False)
-test_data_2.to_csv('test/test_data_2.csv', index=False)
-test_data_3.to_csv('test/test_data_3.csv', index=False)
+test_regular_data.to_csv('test/test_data_1.csv', index=False)
+test_noised_data.to_csv('test/test_data_2.csv', index=False)
+test_data_with_anomalies.to_csv('test/test_data_3.csv', index=False)
 
 print("Данные успешно созданы и сохранены в папках 'train' и 'test'.")
