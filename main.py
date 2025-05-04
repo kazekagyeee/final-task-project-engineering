@@ -2,9 +2,9 @@ import webbrowser
 import time
 import pyautogui
 
-url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+url = "https://rb.gy/lnci17"
 webbrowser.open(url)
 
-time.sleep(3)
+time.sleep(5)
 
 pyautogui.click(x=500, y=500)
