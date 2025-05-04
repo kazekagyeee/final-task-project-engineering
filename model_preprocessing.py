@@ -5,24 +5,34 @@ from sklearn.preprocessing import StandardScaler
 
 # Функция для загрузки данных из папки
 def load_data_from_folder(folder_path):
+    if not os.path.exists(folder_path):
+        raise FileNotFoundError(f"Папка '{folder_path}' не найдена.")
+
     data_frames = []
     for file_name in os.listdir(folder_path):
         if file_name.endswith('.csv'):
             file_path = os.path.join(folder_path, file_name)
-            df = pd.read_csv(file_path)
-            data_frames.append(df)
+            try:
+                df = pd.read_csv(file_path)
+                data_frames.append(df)
+            except Exception as e:
+                print(f"Ошибка при чтении файла '{file_name}': {e}")
+
+    if not data_frames:
+        raise ValueError(f"Нет CSV файлов в папке '{folder_path}'.")
+
     return pd.concat(data_frames, ignore_index=True)
 
 
 # Функция для предобработки данных
-def preprocess_data(data):
+def preprocess_data(data, scaler=None):
     # Инициализация StandardScaler
-    scaler = StandardScaler()
+    if scaler is None:
+        scaler = StandardScaler()
+        scaled_data = scaler.fit_transform(data)
+    else:
+        scaled_data = scaler.transform(data)
 
-    # Стандартизация данных
-    scaled_data = scaler.fit_transform(data)
-
-    # Преобразование обратно в DataFrame
     scaled_df = pd.DataFrame(scaled_data, columns=data.columns)
     return scaled_df, scaler
 
