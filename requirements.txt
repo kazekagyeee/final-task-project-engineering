@@ -1,2 +1,4 @@
-webbrowser
-pyautogui
+numpy
+pandas
+scikit-learn
+joblib
